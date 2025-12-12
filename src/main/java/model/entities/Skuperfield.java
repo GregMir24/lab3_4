@@ -33,10 +33,10 @@ public class Skuperfield extends AbstractEntity {
             = money;}
 
     public ArrayList<Barge> getBarges() {
-        return barges;
+        return new ArrayList<>(barges);
     }
 
-    public ArrayList<Factory> getFactories(){ return factories;}
+    public ArrayList<Factory> getFactories(){ return new ArrayList<>(factories);}
 
     public Map<Stock, Integer> getPortfolio() {
         return new HashMap<>(portfolio);
@@ -104,7 +104,7 @@ public class Skuperfield extends AbstractEntity {
     }
 
     public void goToFactory(Factory factory) {
-        System.out.println(name + " отправился на фабрику " + factory.getName());
+        System.out.print(name + " отправился на фабрику " + factory.getName());
     }
 
     public void addBarge(Barge barge) {

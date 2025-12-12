@@ -39,6 +39,7 @@ public class Factory extends AbstractEntity implements Produceable {
 
     public int getStorage(){ return storage;}
 
+
     public double getProductPrice(){ return productPrice;}
 
     @Override
