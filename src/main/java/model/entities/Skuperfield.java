@@ -18,6 +18,7 @@ public class Skuperfield extends AbstractEntity {
     private ArrayList<Factory> factories = new ArrayList<>();
     private ArrayList<Barge> barges = new ArrayList<>();
     private Map<Stock, Integer> portfolio = new HashMap<>();
+    private Random random = new Random();
 
     public Skuperfield(String name, City location, double money) {
         super(name, location.getName());
@@ -45,7 +46,7 @@ public class Skuperfield extends AbstractEntity {
     public void buyIfWorth(Barge barge, Stock stock, int quantity) {
         try {
             ArrayList<Worker> workers = barge.getWorkers();
-            Worker worker = workers.get(new Random().nextInt(workers.size()));
+            Worker worker = workers.get(random.nextInt(workers.size()));
             if (barge == null || worker == null || stock == null) {
                 throw new IllegalArgumentException("Параметры не могут быть null");
             }
@@ -70,7 +71,13 @@ public class Skuperfield extends AbstractEntity {
                         name, quantity, stock.getName(), totalCost, money);
                 return;
             }
-            barge.call(barge.getConnections().get(new Random().nextInt(barge.getConnections().size())), "К нам едет босс.");
+            ArrayList<Barge> connections = barge.getConnections();
+            if (connections != null && !connections.isEmpty()) {
+                int randomIndex = new Random().nextInt(connections.size());
+                barge.call(connections.get(randomIndex), "К нам едет босс.");
+            } else {
+                System.out.printf("%n%s не может позвонить: нет соединенных барж", name);
+                }
             this.goToBarge(barge);
 
             TradeOrder tradeOrder = new TradeOrder(stock, quantity, currentPrice);

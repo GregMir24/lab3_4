@@ -8,25 +8,42 @@ import java.util.Random;
 
 public class ParagraphOne {
     public void buildingBarges(ArrayList<Barge> barges){
-        if (barges.size() == 2){
-            System.out.printf(" В скором времени %s, а затем %s.", barges.get(0).build(), barges.get(1).build());
-        } else {
-            System.out.printf(" В скором времени %s, а затем %s, ", barges.get(0).build(), barges.get(1).build());
-            for (int i = 0; i < barges.size(); i++){
-                System.out.printf(barges.get(i).build());
-            }
+        switch (barges.size()){
+            case 1:
+                System.out.printf(" В скором времени %s", barges.get(0).build());
+                break;
+
+            default:  System.out.printf(" В скором времени %s, а затем %s, ", barges.get(0).build(), barges.get(1).build());
+                for (int i = 2; i < barges.size(); i++){
+                    System.out.printf(barges.get(i).build());
+                }
         }
+
     }
 
     public void connectingBarges(int countOfBarges){
-        System.out.printf("%nКогда изобрели телефон, все %d баржи были соединены между собой телефонными проводами. ", countOfBarges);
+        if (countOfBarges > 1) {
+            System.out.printf("%nКогда изобрели телефон, все %d баржи были соединены между собой телефонными проводами. ", countOfBarges);
+        } else {
+            System.out.printf("%nБыла только одна баржа, поэтому нечего было соединять.");
+        }
     }
 
     public void informationAboutBarges(ArrayList<Barge> barges, int startBarge, int worker) throws IndexOutOfBoundsException{
         if (barges.isEmpty()) return;
 
+        if (startBarge < 0) {
+            startBarge = new Random().nextInt(barges.size());
+        }
+
         Barge barge = barges.get(startBarge);
         ArrayList<Worker> workers = barge.getWorkers();
+
+        if (workers.isEmpty()) return;
+
+        if (worker < 0) {
+            worker = new Random().nextInt(workers.size());
+        }
 
         if (workers.isEmpty()) return;
 

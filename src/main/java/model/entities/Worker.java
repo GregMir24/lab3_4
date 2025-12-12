@@ -8,8 +8,9 @@ public class Worker extends AbstractEntity implements Workable {
     private String type;
 
     public Worker(String name, Barge barge, String type){
-        super(name, barge.getName());
+        super(name, barge.getCity());
         this.type = type;
+        barge.addWorker(this);
     }
 
     public void work(TradeOrder tradeOrder, Skuperfield skuperfield){

@@ -50,7 +50,7 @@ public abstract class AbstractStock implements Tradeable {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
-        AbstractEntity that = (AbstractEntity) object;
+        AbstractStock that = (AbstractStock) object;
         return Objects.equals(id, that.id);
     }
 

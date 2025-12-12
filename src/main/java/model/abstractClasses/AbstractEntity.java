@@ -19,6 +19,7 @@ public abstract class AbstractEntity {
         return id;
     }
 
+    public String getLocation(){return location;}
     public String getName(){
         return name;
     }

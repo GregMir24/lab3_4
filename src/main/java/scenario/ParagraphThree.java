@@ -13,7 +13,7 @@ public class ParagraphThree {
         if (skuperfield.getFactories().size()>1){
             System.out.printf("%n%s отправился на фабрики:", skuperfield.getName());
             for (int i = 0; i < skuperfield.getFactories().size(); i++) {
-                System.out.print(skuperfield.getFactories().get(i));
+                skuperfield.goToFactory(skuperfield.getFactories().get(i));
             }
         }else{
             skuperfield.goToFactory(skuperfield.getFactories().get(0));

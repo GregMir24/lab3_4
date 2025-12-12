@@ -23,9 +23,6 @@ public class ParagraphTwo {
 
     public void ordering(){
         Barge targetBarge = findBarge();
-        ArrayList<Worker> workers = targetBarge.getWorkers();
-        int randomWorkerNumber = new Random().nextInt(workers.size());
-        Worker targetWorker = workers.get(randomWorkerNumber);
 
         skuperfield.buyIfWorth(targetBarge, stock, 5);
     }
@@ -35,14 +32,22 @@ public class ParagraphTwo {
         ArrayList<Barge> barges = skuperfield.getBarges();
         String typeOfStock = stock.getType();
 
+        if (barges == null || barges.isEmpty()) {
+            return null;
+        }
+
         for (Barge targetBarge : barges) {
-            for (Stock bargesStock : targetBarge.getStocks()) {
+            ArrayList<Stock> stocks = targetBarge.getStocks();
+            if (stocks == null || stocks.isEmpty()) {
+                continue;
+            }
+
+            for (Stock bargesStock : stocks) {
                 if (typeOfStock.equals(bargesStock.getType())) {
                     return targetBarge;
                 }
             }
         }
-
         return null;
     }
 }

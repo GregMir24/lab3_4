@@ -11,26 +11,57 @@ import model.market.Stock;
 public class Scenario {
 
     public void execute(){
-        Skuperfield skuperfield = new Skuperfield("Илон Маск", City.SAN_KOMARIK, 100.0);
+        System.out.println("=== Базовый тест ===");
+        System.out.println("=== ИНИЦИАЛИЗАЦИЯ ОБЪЕКТОВ ===");
+        System.out.println();
+
+        Skuperfield skuperfield = new Skuperfield("Илон Маск", City.SAN_KOMARIK, 100000000000.0);
+        System.out.println("Создан Skuperfield: " + skuperfield.getName());
+        System.out.println("Локация: " + skuperfield.getLocation());
+        System.out.println("Деньги: " + skuperfield.getMoney());
+        System.out.println();
+
         Barge waterFlotBarge = new Barge("Вотерфлот", City.DAVILON);
         Barge utairBarge = new Barge("Ютэйр", City.GRABENBERG);
         Barge hacapuriBarge = new Barge("Хачапурка", City.SAN_KOMARIK);
 
-        Factory factory = new Factory("Пельмешкопродакшн", City.GRABENBERG, "пельмени", 2000, 150);
+        System.out.println("Созданы баржи:");
+        System.out.println("- " + waterFlotBarge.getName() + " в " + waterFlotBarge.getCity());
+        System.out.println("- " + utairBarge.getName() + " в " + utairBarge.getCity());
+        System.out.println("- " + hacapuriBarge.getName() + " в " + hacapuriBarge.getCity());
+        System.out.println();
 
-        Stock stock = new Stock("Т-банк", "гигантская", 2, "перспективная");
+        Factory factory = new Factory("Пельмешкопродакшн", City.GRABENBERG, "пельмени", 2000, 150);
+        System.out.println("Создана фабрика: " + factory);
+        System.out.println();
+
+        Stock stock = new Stock("Т-банк", "гигантская", 200);
+        System.out.println("Создана акция: " + stock);
+        System.out.println();
 
         Worker screamer1 = new Worker("Александр", waterFlotBarge, "крикун");
         Worker screamer2 = new Worker("Андрюха", utairBarge, "крикун");
         Worker screamer3 = new Worker("Хуй зинь пинь", hacapuriBarge, "крикун");
 
-        waterFlotBarge.addWorker(screamer1);
-        utairBarge.addWorker(screamer2);
-        hacapuriBarge.addWorker(screamer3);
+        System.out.println("Созданы работники:");
+        System.out.println("- " + screamer1.getName() + " на барже " + waterFlotBarge.getName());
+        System.out.println("- " + screamer2.getName() + " на барже " + utairBarge.getName());
+        System.out.println("- " + screamer3.getName() + " на барже " + hacapuriBarge.getName());
+        System.out.println();
 
         waterFlotBarge.addStock(stock);
         utairBarge.addStock(stock);
         hacapuriBarge.addStock(stock);
+        System.out.println("Акция добавлена на все баржи");
+        System.out.println();
+
+        skuperfield.addFactory(factory);
+        skuperfield.addBarge(waterFlotBarge);
+        skuperfield.addBarge(utairBarge);
+        System.out.println("Фабрика и баржи добавлены Скуперфильду");
+        System.out.println();
+
+        System.out.println("=== НАЧАЛО СЦЕНАРИЯ ===");
 
         try{
             waterFlotBarge.connect(utairBarge);
@@ -44,10 +75,7 @@ public class Scenario {
         skuperfield.addFactory(factory);
         skuperfield.addBarge(waterFlotBarge);
         skuperfield.addBarge(utairBarge);
-//
-//
-//
-//
+
         try {
             ParagraphOne p1 = new ParagraphOne();
             p1.buildingBarges(skuperfield.getBarges());
